@@ -18,9 +18,14 @@
 
 <body>
     <div id="container__digits">
-        <input type="text" id="input__digits" placeholder="000000" onkeypress='validate(event)'>
+        <input type="text" id="input__digits" placeholder="000000">
         <input type="text" name="" id="" style="display: none;">
     </div>
+
+    <div id="container__information">
+        <h1>Roate your phone!</h1>
+    </div>
+
 </body>
 
 <script>
@@ -45,9 +50,7 @@
 </script>
 
 <script>
-    // validate event
-
-    function validate(evt) {
+    window.addEventListener("keydown", (evt) => {
         var theEvent = evt || window.event;
         var input_field = document.getElementById('input__digits')
 
@@ -61,11 +64,16 @@
         }
         var regex = /[0-9]|\./;
 
+
+        if (theEvent.keyCode == 8) {
+            return
+        }
+
         if (!regex.test(key) || input_field.value.length > 5) {
             theEvent.returnValue = false;
             if (theEvent.preventDefault) theEvent.preventDefault();
         }
-    }
+    })
 </script>
 
 </html>

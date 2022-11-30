@@ -10,14 +10,6 @@
     caret-color: transparent;
 }
 
-/* 
-html {
-    height: 100vh;
-    width: 100vw;
-
-    display: grid;
-    align-items: center;
-} */
 
 #container__digits {
     height: 100vh;
@@ -40,4 +32,26 @@ html {
     height: 100vh;
 
     text-align: center;
+}
+
+
+@media only screen and (orientation: portrait) {
+    #container__digits {
+        display: none;
+    }
+}
+
+
+#container__information {
+    height: 100vh;
+    width: 100vw;
+
+    display: grid;
+    place-items: center;
+}
+
+@media only screen and (orientation: landscape) {
+    #container__information {
+        display: none;
+    }
 }
