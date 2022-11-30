@@ -1,0 +1,17 @@
+{
+    "name": "Digit PWA",
+    "short_name": "Digits",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "#272533",
+    "theme_color": "black",
+    "scope": ".",
+    "description": "PWA to enter 6 digits",
+    "icons": [
+        {
+            "src": "images/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
