@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Digit PWA</title>
+
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700">
+    <meta name="theme-color" content="black">
+
+    <!-- Manifest File link -->
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div id="container__digits">
+        <input type="text" id="input__digits" placeholder="000000" onkeypress='validate(event)'>
+        <input type="text" name="" id="" style="display: none;">
+    </div>
+</body>
+
+<script>
+    // Service worker for PWA
+    window.addEventListener('load', () => {
+        registerSW();
+    });
+
+    // Register the Service Worker
+    async function registerSW() {
+        if ('serviceWorker' in navigator) {
+            try {
+                await navigator
+                    .serviceWorker
+                    .register('serviceworker.js');
+            }
+            catch (e) {
+                console.log('SW registration failed');
+            }
+        }
+    }
+</script>
+
+<script>
+    // validate event
+
+    function validate(evt) {
+        var theEvent = evt || window.event;
+        var input_field = document.getElementById('input__digits')
+
+        // Handle paste
+        if (theEvent.type === 'paste') {
+            key = event.clipboardData.getData('text/plain');
+        } else {
+            // Handle key press
+            var key = theEvent.keyCode || theEvent.which;
+            key = String.fromCharCode(key);
+        }
+        var regex = /[0-9]|\./;
+
+        if (!regex.test(key) || input_field.value.length > 5) {
+            theEvent.returnValue = false;
+            if (theEvent.preventDefault) theEvent.preventDefault();
+        }
+    }
+</script>
+
+</html>
